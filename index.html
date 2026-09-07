@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="GIS portfolio featuring spatial analysis, cartography, and place-based storytelling.">
+	<title>Field Notes | GIS Portfolio</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			--ink: #17312b;
+			--muted: #62736d;
+			--cream: #f5f1e8;
+			--paper: #fbfaf6;
+			--line: #d6ded5;
+			--coral: #e86d4d;
+			--blue: #91c4c1;
+			--dark: #15352f;
+			--mono: "DM Mono", monospace;
+			--sans: "Manrope", sans-serif;
+			--serif: "Fraunces", serif;
+		}
+
+		* { box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); }
+		a { color: inherit; text-decoration: none; }
+		.wrap { width: min(1160px, calc(100% - 48px)); margin: 0 auto; }
+		.eyebrow { color: var(--coral); font: 500 12px var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+
+		header { position: absolute; z-index: 2; width: 100%; padding: 27px 0; color: var(--paper); }
+		nav { display: flex; align-items: center; justify-content: space-between; }
+		.brand { display: flex; align-items: center; gap: 12px; font: 600 16px var(--mono); }
+		.brand-mark { display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid rgba(255,255,255,.6); border-radius: 50%; font-size: 11px; }
+		.nav-links { display: flex; gap: 28px; color: rgba(251,250,246,.78); font-size: 13px; }
+		.nav-links a:hover { color: white; }
+
+		.hero { position: relative; display: flex; align-items: flex-end; min-height: 720px; overflow: hidden; color: var(--paper); background: linear-gradient(90deg, rgba(11,39,34,.88) 0%, rgba(17,57,50,.63) 50%, rgba(17,57,50,.3) 100%), url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2000&q=85") center/cover; }
+		.hero::after { position: absolute; right: 8%; top: 20%; width: 360px; height: 360px; border: 1px solid rgba(255,255,255,.25); border-radius: 50%; content: ""; box-shadow: 0 0 0 42px rgba(255,255,255,.05), 0 0 0 112px rgba(255,255,255,.04); }
+		.hero-content { position: relative; z-index: 1; width: 100%; padding: 140px 0 72px; }
+		h1, h2, h3 { margin: 0; font-family: var(--serif); font-weight: 600; letter-spacing: -.035em; }
+		h1 { max-width: 750px; margin-top: 20px; font-size: clamp(56px, 8vw, 106px); line-height: .94; }
+		.hero-intro { max-width: 490px; margin: 28px 0 0 7px; color: rgba(251,250,246,.78); font-size: 16px; line-height: 1.7; }
+		.hero-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: 74px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.25); font: 12px var(--mono); color: rgba(251,250,246,.7); }
+		.scroll-note::before { display: inline-block; width: 28px; height: 1px; margin-right: 10px; vertical-align: middle; background: var(--coral); content: ""; }
+
+		.intro { display: grid; grid-template-columns: .8fr 1.4fr; gap: 12%; padding: 112px 0; }
+		.intro h2 { max-width: 390px; margin-top: 16px; font-size: clamp(32px, 4vw, 52px); line-height: 1.02; }
+		.intro-copy { align-self: end; max-width: 550px; color: var(--muted); font-size: 18px; line-height: 1.75; }
+		.intro-copy strong { color: var(--ink); font-weight: 600; }
+
+		.projects-band { padding: 88px 0 112px; background: var(--cream); }
+		.section-heading { display: flex; align-items: end; justify-content: space-between; margin-bottom: 42px; }
+		.section-heading h2 { margin-top: 12px; font-size: clamp(38px, 5vw, 62px); line-height: .95; }
+		.view-all { padding-bottom: 8px; border-bottom: 1px solid var(--coral); font: 12px var(--mono); }
+		.project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 72px 28px; }
+		.project-card { min-width: 0; }
+		.project-image { position: relative; overflow: hidden; aspect-ratio: 1.45; background: var(--blue); }
+		.project-image img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform .6s ease; }
+		.project-card:hover img { transform: scale(1.04); }
+		.project-number { position: absolute; top: 16px; left: 16px; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; color: var(--paper); background: var(--coral); font: 12px var(--mono); }
+		.project-meta { display: flex; justify-content: space-between; gap: 16px; margin-top: 18px; }
+		.project-meta h3 { font-size: 28px; }
+		.project-meta p { margin: 5px 0 0; color: var(--muted); font-size: 13px; }
+		.project-type { padding-top: 7px; color: var(--coral); font: 11px var(--mono); text-transform: uppercase; white-space: nowrap; }
+		.project-link { display: inline-block; margin-top: 12px; color: var(--dark); font: 12px var(--mono); letter-spacing: .04em; text-transform: uppercase; border-bottom: 1px solid var(--coral); padding-bottom: 4px; }
+		.project-link:hover { color: var(--coral); }
+
+		.toolkit { display: grid; grid-template-columns: 1fr 1fr; gap: 10%; padding: 112px 0; }
+		.toolkit h2 { max-width: 420px; margin-top: 14px; font-size: clamp(38px, 5vw, 60px); line-height: 1; }
+		.tool-list { border-top: 1px solid var(--line); }
+		.tool { display: flex; align-items: baseline; justify-content: space-between; padding: 20px 0; border-bottom: 1px solid var(--line); }
+		.tool span:first-child { font-size: 17px; }
+		.tool span:last-child { color: var(--muted); font: 11px var(--mono); }
+
+		.contact { padding: 104px 0 112px; color: var(--paper); background: var(--dark); }
+		.contact-layout { display: flex; align-items: end; justify-content: space-between; gap: 40px; }
+		.contact h2 { max-width: 600px; margin-top: 16px; font-size: clamp(45px, 6vw, 78px); line-height: .96; }
+		.contact .eyebrow { color: var(--blue); }
+		.contact-link { padding: 17px 24px; border: 1px solid rgba(251,250,246,.4); border-radius: 99px; color: var(--paper); font: 12px var(--mono); transition: background .2s, color .2s; }
+		.contact-link:hover { color: var(--dark); background: var(--paper); }
+		footer { padding: 25px 0; color: var(--muted); background: var(--cream); font: 11px var(--mono); }
+		.footer-inner { display: flex; justify-content: space-between; }
+
+		@media (max-width: 700px) {
+			.wrap { width: min(100% - 32px, 1160px); }
+			header { padding: 18px 0; }
+			.nav-links { gap: 14px; font-size: 11px; }
+			.nav-links a:nth-child(2) { display: none; }
+			.hero { min-height: 650px; }
+			.hero::after { right: -105px; top: 26%; width: 290px; height: 290px; }
+			.hero-content { padding: 120px 0 40px; }
+			.hero-bottom { margin-top: 52px; }
+			.intro, .toolkit { grid-template-columns: 1fr; gap: 38px; padding: 76px 0; }
+			.intro-copy { font-size: 16px; }
+			.projects-band { padding: 72px 0 82px; }
+			.section-heading { align-items: start; flex-direction: column; gap: 24px; }
+			.project-grid { grid-template-columns: 1fr; gap: 52px; }
+			.project-meta h3 { font-size: 25px; }
+			.contact { padding: 78px 0; }
+			.contact-layout { align-items: start; flex-direction: column; }
+			.footer-inner { gap: 16px; flex-direction: column; }
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<div class="wrap">
+			<nav aria-label="Primary navigation">
+				<a class="Laura Adams" href="#top"><span class="brand-mark">FN</span> FIELD NOTES</a>
+				<div class="nav-links"><a href="#work">Work</a><a href="#approach">Approach</a><a href="#contact">Contact</a></div>
+			</nav>
+		</div>
+	</header>
+
+	<main id="top">
+		<section class="hero">
+			<div class="wrap hero-content">
+				<div class="eyebrow">GIS portfolio / 2024—25</div>
+				<h1>Making sense<br>of where we are.</h1>
+				<p class="hero-intro">I’m a geospatial student from Utah State University interested in the stories hidden inside landscapes, neighborhoods, and movement.</p>
+				<div class="hero-bottom"><span class="scroll-note">Explore the field notes</span><span>Based in the Pacific Northwest</span></div>
+			</div>
+		</section>
+
+		<section class="wrap intro" id="approach">
+			<div><div class="eyebrow">01 / The approach</div><h2>Maps are arguments, not just pictures.</h2></div>
+			<p class="intro-copy">My work sits at the intersection of <strong>data, design, and place.</strong> I use GIS to turn complex spatial datasets into clear tools for decisions, and thoughtful maps that invite people to look closer.</p>
+		</section>
+
+		<section class="projects-band" id="work">
+			<div class="wrap">
+				<div class="section-heading"><div><div class="eyebrow">02 / Selected work</div><h2>Recent field notes</h2></div><a class="view-all" href="mailto:a02431132@usu.edu">Request full archive ↗</a></div>
+				<div class="project-grid">
+					<article class="project-card">
+						<a href="https://storymaps.arcgis.com/stories/8fd35121b4e449619a8db7b77597b5c0" target="_blank" rel="noreferrer">
+							<div class="project-image">
+								<img src="images/project-storymap.PNG" alt="ArcGIS storymap Tracking habitat overlap and landcover for Colombian Sharp-tailed and Greater Sage Grouse Final Project">
+								<span class="project-number">01</span>
+							</div>
+						</a>
+						<div class="project-meta">
+							<div>
+								<h3>Winged Worlds Collide</h3>
+								<p>Story map · Box Elder County, UT</p>
+							</div>
+							<span class="project-type">Cartography and Habitat Analysis</span>
+						</div>
+						<a class="project-link" href="https://storymaps.arcgis.com/stories/8fd35121b4e449619a8db7b77597b5c0" target="_blank" rel="noreferrer">View story map ↗</a>
+					</article>
+					<article class="project-card">
+						<a href="https://sites.google.com/view/lma-gisportfolio/data-infographic?authuser=" target="_blank" rel="noreferrer">
+							<div class="project-image">
+								<img src="images/project-infographic.PNG" alt="Infographic about combustible energy">
+								<span class="project-number">02</span>
+							</div>
+						</a>
+						<div class="project-meta">
+							<div>
+								<h3>Fueling the Flame</h3>
+								<p>Access analysis · United States</p>
+							</div>
+							<span class="project-type">Tableau Data Visualization and Analysis</span>
+						</div>
+						<a class="project-link" href="https://sites.google.com/view/lma-gisportfolio/data-infographic?authuser=" target="_blank" rel="noreferrer">View infographic ↗</a>
+					</article>
+					<article class="project-card">
+						<a href="https://github.com/a02431132-prog/GEOG3700_Final_Project-Python" target="_blank" rel="noreferrer">
+							<div class="project-image">
+								<img src="images/project-python.png" alt="Python project workflow and data analysis">
+								<span class="project-number">03</span>
+							</div>
+						</a>
+						<div class="project-meta">
+							<div>
+								<h3>Python Final Project</h3>
+								<p>Heat mapping · Box Elder County, UT</p>
+							</div>
+							<span class="project-type">Python Scripting and Data Analysis</span>
+						</div>
+						<a class="project-link" href="https://github.com/a02431132-prog/GEOG3700_Final_Project-Python" target="_blank" rel="noreferrer">View Python project repo ↗</a>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<section class="wrap toolkit">
+			<div><div class="eyebrow">03 / The toolkit</div><h2>Curious about systems, attentive to detail.</h2></div>
+			<div class="tool-list"><div class="tool"><span>ArcGIS Pro / Online</span><span>Analysis + publishing</span></div><div class="tool"><span>QGIS + PostGIS</span><span>Open-source workflows</span></div><div class="tool"><span>Python + JavaScript</span><span>Automation + web maps</span></div><div class="tool"><span>Figma + Illustrator</span><span>Visual language</span></div></div>
+		</section>
+
+		<section class="contact" id="contact"><div class="wrap contact-layout"><div><div class="eyebrow">04 / Say hello</div><h2>Have a place worth looking at?</h2></div><a class="contact-link" href="mailto:a02431132@usu.edu">a02431132@usu.edu ↗</a></div></section>
+	</main>
+
+	<footer><div class="wrap footer-inner"><span>© 2025 Field Notes</span><span>Built for the web, grounded in place.</span></div></footer>
+</body>
+</html>
+
