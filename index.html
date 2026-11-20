@@ -72,13 +72,13 @@
 		.project-link { display: inline-block; margin-top: 12px; color: var(--dark); font: 12px var(--mono); letter-spacing: .04em; text-transform: uppercase; border-bottom: 1px solid var(--coral); padding-bottom: 4px; }
 		.project-link:hover { color: var(--coral); }
 
-		.toolkit { display: grid; grid-template-columns: 1fr 1fr; gap: 10%; padding: 112px 0 160px; }
+		.toolkit { display: grid; grid-template-columns: 1fr 1fr; gap: 10%; padding: 112px 0; position: relative; }
 		.toolkit h2 { max-width: 420px; margin-top: 14px; font-size: clamp(38px, 5vw, 60px); line-height: 1; }
 		.tool-list { border-top: 1px solid var(--line); }
 		.tool { display: flex; align-items: baseline; justify-content: space-between; padding: 20px 0; border-bottom: 1px solid var(--line); }
 		.tool span:first-child { font-size: 17px; }
 		.tool span:last-child { color: var(--muted); font: 11px var(--mono); }
-		.toolkit::after { content: ""; position: relative; bottom: 0; left: 0; width: 100%; height: 1px; background: var(--coral); }
+		.toolkit::after { content: ""; position: absolute; bottom: 0; left: 0; width: 100%; height: 1px; background: var(--coral); }
 		
 		.contact { position: relative; margin-top: 100px; padding: 100px 0 100px; color: var(--paper); background: var(--dark); }
 		.contact-layout { display: flex; align-items: end; justify-content: space-between; gap: 40px; }
